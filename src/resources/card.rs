@@ -1,5 +1,8 @@
 use std::fmt;
 
+
+
+
 pub struct Card {
     value: String,
     suit: char
@@ -8,6 +11,18 @@ pub struct Card {
 impl Card {
     pub fn new(value: &str, suit: char) -> Card {
         return Card{value: value.to_string(), suit: suit}
+    }
+
+    pub fn value(&self) -> i32 {
+        let face_cards: Vec<String> = vec!["K".to_string(), "Q".to_string(), "J".to_string()];
+        let ace: String = "A".to_string();
+        if face_cards.contains(&self.value) {
+            return 10
+        } else if self.value == ace {
+            return 11
+        } else {
+            self.value.parse::<i32>().unwrap()
+        }
     }
 
     // pub fn to_string(&self) {

@@ -13,7 +13,7 @@ impl Player {
         return Player{name: name.to_string(), hand: Hand::new(vec![])}
     }
 
-    pub fn give_card(&mut self, card: Card){
+    pub fn take_card(&mut self, card: Card){
         self.hand.add_card(card);
     }
 }

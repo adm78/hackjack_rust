@@ -14,6 +14,14 @@ impl Hand {
     pub fn add_card(&mut self, card: Card) {
         self.cards.push(card);
     }
+
+    pub fn value(&self) -> i32 {
+        let mut total = 0; 
+        for card in self.cards.iter() {
+            total += card.value();
+        }
+        total
+    }
 }
 
 impl fmt::Display for Hand {
@@ -22,7 +30,7 @@ impl fmt::Display for Hand {
         for card in &self.cards {
             string += &(card.to_string() + " ");
         }
-        write!(f, "{}", string)
+        write!(f, "{}({})", string, self.value())
     }
 }
 

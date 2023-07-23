@@ -16,7 +16,11 @@ fn main() {
     let mut p1 = Player::new("Player 1");
     let card3 = Card::new("9", 'C');
     let card4 = Card::new("A", 'H');
-    p1.give_card(card3);
-    p1.give_card(card4);
+    let card5 = Card::new("K", 'D');
+    p1.take_card(card3);
+    println!("{}", p1.to_string());
+    p1.take_card(card4);
+    println!("{}", p1.to_string());
+    p1.take_card(card5);
     println!("{}", p1.to_string());
 }
