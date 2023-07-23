@@ -16,9 +16,23 @@ impl Hand {
     }
 
     pub fn value(&self) -> i32 {
-        let mut total = 0; 
+        let mut total = 0;
+        let mut ace_count = 0;
         for card in self.cards.iter() {
-            total += card.value();
+            if card.is_ace() {
+                ace_count += 1;  // we sort these at the end
+            } else {
+                total += card.value();   
+            }
+        }
+
+        // handle the aces
+        if ace_count > 0 {
+            if total <= 10 {
+                total += 11 + (ace_count - 1);  // only one ace can have value of 11
+            } else {
+                total += ace_count;
+            }
         }
         total
     }

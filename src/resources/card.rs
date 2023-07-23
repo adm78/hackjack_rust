@@ -25,6 +25,10 @@ impl Card {
         }
     }
 
+    pub fn is_ace(&self) -> bool {
+        return self.value == "A"
+    }
+
     // pub fn to_string(&self) {
     //     format!("{value}{suit}", value=self.value, suit=self.suit);
     // }

@@ -17,10 +17,18 @@ fn main() {
     let card3 = Card::new("9", 'C');
     let card4 = Card::new("A", 'H');
     let card5 = Card::new("K", 'D');
+    let card6 = Card::new("A", 'D');
+    let card7 = Card::new("A", 'S');
     p1.take_card(card3);
     println!("{}", p1.to_string());
     p1.take_card(card4);
     println!("{}", p1.to_string());
     p1.take_card(card5);
     println!("{}", p1.to_string());
+    p1.take_card(card6);
+    println!("{}", p1.to_string());
+    p1.take_card(card7);
+    println!("{}", p1.to_string());
+
+    // todo: we need some unit test for the value stuff
 }
