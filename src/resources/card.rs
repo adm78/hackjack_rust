@@ -1,6 +1,6 @@
 use std::fmt;
 
-
+use crate::resources::constants::{FACE_CARDS, ACE};
 
 
 pub struct Card {
@@ -14,11 +14,10 @@ impl Card {
     }
 
     pub fn value(&self) -> i32 {
-        let face_cards: Vec<String> = vec!["K".to_string(), "Q".to_string(), "J".to_string()];
-        let ace: String = "A".to_string();
-        if face_cards.contains(&self.value) {
+        // let face_cards: Vec<String> = vec!["K".to_string(), "Q".to_string(), "J".to_string()];
+        if FACE_CARDS.contains(&self.value) {
             return 10
-        } else if self.value == ace {
+        } else if self.value == *ACE {
             return 11
         } else {
             self.value.parse::<i32>().unwrap()

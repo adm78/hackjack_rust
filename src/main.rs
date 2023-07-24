@@ -1,4 +1,5 @@
 use crate::resources::card::Card;
+use crate::resources::deck::Deck;
 use crate::resources::hand::Hand;
 use crate::resources::player::Player;
 
@@ -15,10 +16,10 @@ fn main() {
     
     let mut p1 = Player::new("Player 1");
     let card3 = Card::new("9", 'C');
-    let card4 = Card::new("A", 'H');
-    let card5 = Card::new("K", 'D');
-    let card6 = Card::new("A", 'D');
-    let card7 = Card::new("A", 'S');
+    let card4 = Card::new("A", '♣');
+    let card5 = Card::new("K", '♦');
+    let card6 = Card::new("A", '♥');
+    let card7 = Card::new("A", '♠');
     p1.take_card(card3);
     println!("{}", p1.to_string());
     p1.take_card(card4);
@@ -31,4 +32,6 @@ fn main() {
     println!("{}", p1.to_string());
 
     // todo: we need some unit test for the value stuff
+    let deck = Deck::new();
+    println!("{}",deck.to_string());
 }
