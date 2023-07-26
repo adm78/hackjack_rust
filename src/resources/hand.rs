@@ -36,6 +36,10 @@ impl Hand {
         }
         total
     }
+
+    pub fn is_bust(&self) -> bool {
+        self.value() > 21
+    }
 }
 
 impl fmt::Display for Hand {
