@@ -1,5 +1,6 @@
 use crate::resources::deck::Deck;
 use crate::resources::player::InteractivePlayer;
+use crate::resources::player::BasicGameplay;
 
 pub mod resources;
 
@@ -24,7 +25,14 @@ fn main() {
         if p1.hit_or_stick() {
             p1.take_card(deck.draw_card());
             println!("{}", p1.to_string());
+        } else {
+            break;
         }
+    }
+    if p1.is_bust() {
+        println!("Bust!");
+    } else {
+        println!("{}", p1.to_string());
     }
     
     // let card1 = Card::new("10", 'D');
