@@ -2,16 +2,12 @@ use std::fmt;
 
 use crate::resources::hand::Hand;
 use crate::resources::card::Card;
+use crate::resources::gameplay::BasicGameplay;
+use crate::resources::utils::is_bust;
 
 pub struct InteractivePlayer {
-    name: String,
-    hand: Hand
-}
-
-pub trait BasicGameplay {
-    fn hit_or_stick(&self) -> bool;
-    fn take_card(&mut self, card: Card);
-    fn is_bust(&self) -> bool;
+    pub name: String,
+    pub hand: Hand
 }
 
 impl InteractivePlayer {
@@ -38,7 +34,7 @@ impl BasicGameplay for InteractivePlayer {
     }
 
     fn is_bust(&self) -> bool {
-        return self.hand.is_bust()
+        return is_bust(&self.hand)
     }
 }
 

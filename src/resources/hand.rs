@@ -40,6 +40,10 @@ impl Hand {
     pub fn is_bust(&self) -> bool {
         self.value() > 21
     }
+
+    pub fn is_blackjack(&self) -> bool {
+        return self.cards.len() == 2 && self.value() == 21
+    }
 }
 
 impl fmt::Display for Hand {
