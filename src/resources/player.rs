@@ -25,12 +25,21 @@ impl BasicGameplay for InteractivePlayer {
 
     fn hit_or_stick(&self) -> bool {
         let mut line = String::new();
-        println!("Hit or stick? (h/s): ");
-        std::io::stdin().read_line(&mut line).unwrap();
-        if line == "h\n" {
-            return true
+        let valid_input = false;
+        while !valid_input {
+            println!("Hit or stick? (h/s): ");
+            std::io::stdin().read_line(&mut line).unwrap();
+            line = line.trim().to_string();
+            if line == "h" {
+                return true
+            } else if line == "s" {
+                return false
+            } else {
+                println!("Invalid input. Must be 'h' or 's'. Got '{}'.", line);
+                line = "".to_string();
+            }
         }
-        return false
+        return false;
     }
 
     fn is_bust(&self) -> bool {

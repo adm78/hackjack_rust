@@ -27,6 +27,17 @@ impl Card {
     pub fn is_ace(&self) -> bool {
         return self.value == "A"
     }
+
+    pub fn count_weighting(&self) -> i16 {
+        let value = self.value();
+        if value < 6 {
+            return 1
+        } else if value > 9 {
+            return -1
+        } else {
+            return 0
+        }
+    }
 }
 
 impl fmt::Display for Card {

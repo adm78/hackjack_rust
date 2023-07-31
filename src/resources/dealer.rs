@@ -14,6 +14,10 @@ impl Dealer {
     pub fn new() -> Dealer {
         return Dealer{ name: "Dealer".to_string(), hand: Hand::new(vec![]) }
     }
+
+    pub fn to_string_full_hand(&self) -> String {
+        return format!("{}: {}", &self.name, &self.hand)
+    }
 }
 
 impl BasicGameplay for Dealer {
@@ -35,6 +39,11 @@ impl BasicGameplay for Dealer {
 
 impl fmt::Display for Dealer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}: {}", &self.name, &self.hand)
+        let result = self.hand.first_card();
+        match result {
+            Some(card) => write!(f, "{}: {}", &self.name, card),
+            _ => write!(f, "{}: ", &self.name)
+        }
+        
     }
 }

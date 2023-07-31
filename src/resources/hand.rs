@@ -44,6 +44,10 @@ impl Hand {
     pub fn is_blackjack(&self) -> bool {
         return self.cards.len() == 2 && self.value() == 21
     }
+
+    pub fn first_card(&self) -> Option<&Card> {
+        return self.cards.first()
+    }
 }
 
 impl fmt::Display for Hand {

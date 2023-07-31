@@ -2,10 +2,14 @@ use crate::resources::dealer::Dealer;
 use crate::resources::deck::Deck;
 use crate::resources::player::InteractivePlayer;
 use crate::resources::gameplay::BasicGameplay;
+use env_logger;
 
 pub mod resources;
 
+// env_logger::init();
+
 fn main() {
+    env_logger::init();
     println!("-----------------------");
     println!("Welcome to Hackjack 3.0");
     println!("-----------------------");
@@ -46,7 +50,7 @@ fn main() {
     while !dealer.is_bust() {
         if dealer.hit_or_stick() {
             dealer.take_card(deck.draw_card());
-            println!("{}", dealer.to_string());
+            println!("{}", dealer.to_string_full_hand());
         } else {
             break;
         }
@@ -54,11 +58,9 @@ fn main() {
     if dealer.is_bust() {
         println!("{} is bust!", dealer.name);
     } else {
-        println!("{}", dealer.to_string());
+        println!("{}", dealer.to_string_full_hand());
     }
 
-
-    // need to deal with player and dealer natural blackjack
     if p1.is_bust() {
         println!("{} loses!", p1.name);
     } else {
@@ -68,42 +70,13 @@ fn main() {
             }
             println!("{} wins!", p1.name);
         } else {
-            if p1.hand.value() > dealer.hand.value() {
+            if p1.hand.is_blackjack() && dealer.hand.is_blackjack() {
+                println!("{} and {} both have blackjack. It's a draw.", p1.name, dealer.name);
+            } else if p1.hand.value() > dealer.hand.value() {
                 println!("{} wins!", p1.name);
             } else {
                 println!("{} loses!", p1.name);
             }
         }
     }
-    
-    // let card1 = Card::new("10", 'D');
-    // let card2 = Card::new("3", 'S');
-
-    // println!("{}", card1.to_string());
-    // let hand = Hand::new(vec![card1, card2]);
-    // println!("{}", hand.to_string());
-    
-    // let mut p1 = Player::new("Player 1");
-    // let card3 = Card::new("9", 'C');
-    // let card4 = Card::new("A", '♣');
-    // let card5 = Card::new("K", '♦');
-    // let card6 = Card::new("A", '♥');
-    // let card7 = Card::new("A", '♠');
-    // p1.take_card(card3);
-    // println!("{}", p1.to_string());
-    // p1.take_card(card4);
-    // println!("{}", p1.to_string());
-    // p1.take_card(card5);
-    // println!("{}", p1.to_string());
-    // p1.take_card(card6);
-    // println!("{}", p1.to_string());
-    // p1.take_card(card7);
-    // println!("{}", p1.to_string());
-
-    // todo: we need some unit test for the value stuff
-    // for _ in 1..53 {
-    //     deck.draw_cards();
-    // }
-
-
 }
