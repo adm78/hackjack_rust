@@ -48,6 +48,10 @@ impl Hand {
     pub fn first_card(&self) -> Option<&Card> {
         return self.cards.first()
     }
+
+    pub fn clear(&mut self) {
+        self.cards.clear();
+    }
 }
 
 impl fmt::Display for Hand {

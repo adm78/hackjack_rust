@@ -10,6 +10,12 @@ pub struct InteractivePlayer {
     pub hand: Hand
 }
 
+pub struct AutonomousPlayer {
+    pub name: String,
+    pub hand: Hand
+}
+
+
 impl InteractivePlayer {
     pub fn new(name: &str) -> InteractivePlayer {
         return InteractivePlayer{name: name.to_string(), hand: Hand::new(vec![])}
@@ -48,6 +54,33 @@ impl BasicGameplay for InteractivePlayer {
 }
 
 impl fmt::Display for InteractivePlayer {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}: {}", &self.name, &self.hand)
+    }
+}
+
+impl AutonomousPlayer {
+    pub fn new(name: &str) -> AutonomousPlayer {
+        return AutonomousPlayer{name: name.to_string(), hand: Hand::new(vec![])}
+    }
+}
+
+impl BasicGameplay for AutonomousPlayer {
+
+    fn take_card(&mut self, card: Card){
+        self.hand.add_card(card);
+    }
+
+    fn hit_or_stick(&self) -> bool {
+        return self.hand.value() < 17
+    }
+
+    fn is_bust(&self) -> bool {
+        return is_bust(&self.hand)
+    }
+}
+
+impl fmt::Display for AutonomousPlayer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}: {}", &self.name, &self.hand)
     }
